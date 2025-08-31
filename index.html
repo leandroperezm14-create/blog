@@ -3,31 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Blog Personal 😊</title>
+    <title>Página con Efecto de Confeti</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-
-        body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #a8e6cf 0%, #88d8a3 100%);
-            min-height: 100vh;
-            padding: 20px;
         }
-
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+        
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
+            display: flex;
+            max-width: 1000px;
+            width: 100%;
             background: white;
             border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
             overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
             animation: slideIn 0.8s ease-out;
+            position: relative;
+            z-index: 2;
         }
-
+        
         @keyframes slideIn {
             from {
                 opacity: 0;
@@ -38,892 +46,265 @@
                 transform: translateY(0);
             }
         }
-
-        .header {
-            background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
-            color: white;
-            padding: 30px;
-            text-align: center;
-            position: relative;
-        }
-
-        .header::before {
-            content: '😊';
-            position: absolute;
-            top: 15px;
-            right: 30px;
-            font-size: 2em;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-10px);
-            }
-            60% {
-                transform: translateY(-5px);
-            }
-        }
-
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .subtitle {
-            font-size: 1.2em;
-            opacity: 0.9;
-        }
-
-        .controls {
-            padding: 20px;
-            background: #f8fffe;
-            border-bottom: 1px solid #e0e0e0;
+        
+        .text-section {
+            flex: 1;
+            padding: 60px 40px;
             display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
+            flex-direction: column;
             justify-content: center;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
         }
-
-        .btn {
-            padding: 12px 24px;
-            border: none;
-            border-radius: 25px;
-            font-weight: bold;
+        
+        .image-section {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            background: white;
             cursor: pointer;
             transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 14px;
         }
-
-        .btn-admin {
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
-            color: white;
-        }
-
-        .btn-admin:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 15px rgba(255, 154, 158, 0.4);
-        }
-
-        .btn-new {
-            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-            color: #333;
-            display: none;
-        }
-
-        .btn-new:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 15px rgba(168, 237, 234, 0.4);
-        }
-
-        .btn-new.visible {
-            display: inline-block;
-        }
-
-        .admin-status {
-            background: #4ecdc4;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 12px;
-            display: none;
-        }
-
-        .admin-status.visible {
-            display: inline-block;
-        }
-
-        .posts-container {
-            padding: 30px;
-            min-height: 400px;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
-
-        .post {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease;
-            animation: postSlideIn 0.6s ease-out;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-
-        @keyframes postSlideIn {
-            from {
-                opacity: 0;
-                transform: translateX(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .post:hover {
-            transform: translateY(-5px);
-        }
-
-        .post-image {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .post-image:hover {
-            transform: scale(1.05);
-        }
-
-        .post-content {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .post-title {
-            font-size: 1.2em;
+        
+        h1 {
+            font-size: 4.5rem;
             color: #2c3e50;
-            margin-bottom: 10px;
-            font-weight: bold;
-            line-height: 1.3;
-        }
-
-        .post-text {
-            color: #666;
-            line-height: 1.5;
-            margin-bottom: 15px;
-            flex-grow: 1;
-            overflow: hidden;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-        }
-
-        .post-date {
-            color: #999;
-            font-size: 0.85em;
-            margin-top: auto;
-        }
-
-        .post-actions {
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .delete-btn {
-            background: #e74c3c;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 15px;
-            cursor: pointer;
-            font-size: 12px;
-            display: none;
-        }
-
-        .edit-btn {
-            background: #3498db;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 15px;
-            cursor: pointer;
-            font-size: 12px;
-            display: none;
-        }
-
-        .delete-btn.visible, .edit-btn.visible {
-            display: inline-block;
-        }
-
-        .delete-btn:hover {
-            background: #c0392b;
-        }
-
-        .edit-btn:hover {
-            background: #2980b9;
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-            color: #666;
-            grid-column: 1 / -1;
-        }
-
-        .empty-state h3 {
-            font-size: 1.5em;
-            margin-bottom: 15px;
-            color: #4ecdc4;
-        }
-
-        .empty-state p {
-            font-size: 1.1em;
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            animation: modalFadeIn 0.3s ease-out;
-        }
-
-        @keyframes modalFadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .modal-content {
-            background-color: white;
-            margin: 5% auto;
-            padding: 30px;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 500px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-            animation: modalSlideIn 0.3s ease-out;
-        }
-
-        @keyframes modalSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .modal-header {
-            text-align: center;
-            margin-bottom: 25px;
-            position: relative;
-        }
-
-        .modal-header h2 {
-            color: #2c3e50;
-            margin-bottom: 10px;
-        }
-
-        .form-group {
             margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            display: inline-block;
         }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 14px;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #4ecdc4;
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .modal-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-top: 25px;
-        }
-
-        .btn-submit {
-            background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
-            color: white;
-        }
-
-        .btn-cancel {
-            background: #95a5a6;
-            color: white;
-        }
-
-        .btn-submit:hover,
-        .btn-cancel:hover {
-            transform: translateY(-2px);
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-            line-height: 1;
-        }
-
-        .close:hover {
-            color: #e74c3c;
-        }
-
-        /* Image Modal */
-        .image-modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
             left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.8);
-            animation: modalFadeIn 0.3s ease-out;
+            width: 80px;
+            height: 5px;
+            background: linear-gradient(90deg, #6a11cb, #2575fc);
+            border-radius: 3px;
         }
-
-        .image-modal-content {
+        
+        p {
+            font-size: 1.2rem;
+            color: #34495e;
+            line-height: 1.6;
+            margin-top: 30px;
+            max-width: 400px;
+        }
+        
+        .image-wrapper {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            max-width: 100%;
+        }
+        
+        .image-wrapper:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .click-instruction {
             position: absolute;
-            top: 50%;
+            bottom: 15px;
             left: 50%;
-            transform: translate(-50%, -50%);
-            max-width: 90%;
-            max-height: 90%;
-            border-radius: 10px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-        }
-
-        .image-close {
-            position: absolute;
-            top: 20px;
-            right: 30px;
+            transform: translateX(-50%);
+            background: rgba(106, 17, 203, 0.9);
             color: white;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-            z-index: 2001;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            animation: pulse 2s infinite;
+            z-index: 3;
         }
-
-        .image-close:hover {
-            color: #ff6b6b;
-        }
-
-        /* Responsive */
-        @media (max-width: 992px) {
-            .posts-container {
-                grid-template-columns: repeat(2, 1fr);
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(106, 17, 203, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(106, 17, 203, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(106, 17, 203, 0);
             }
         }
-
-        @media (max-width: 768px) {
+        
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            opacity: 0.8;
+            border-radius: 0;
+        }
+        
+        @media (max-width: 900px) {
             .container {
-                margin: 10px;
-                border-radius: 15px;
+                flex-direction: column;
+                max-width: 500px;
             }
             
-            .header {
-                padding: 20px;
+            .text-section, .image-section {
+                padding: 40px 30px;
             }
             
             h1 {
-                font-size: 2em;
+                font-size: 3.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.8rem;
             }
             
-            .controls {
-                flex-direction: column;
-                align-items: center;
+            p {
+                font-size: 1rem;
             }
             
-            .posts-container {
-                grid-template-columns: 1fr;
-                padding: 20px;
-                gap: 20px;
+            .text-section, .image-section {
+                padding: 30px 20px;
             }
             
-            .modal-content {
-                width: 95%;
-                margin: 10% auto;
-                padding: 20px;
+            .click-instruction {
+                font-size: 0.8rem;
+                padding: 6px 12px;
             }
         }
     </style>
 </head>
 <body>
+    <div class="confetti-container" id="confettiContainer"></div>
+    
     <div class="container">
-        <div class="header">
-            <h1>Mi Blog Personal</h1>
-            <p class="subtitle">Compartiendo mis pensamientos y momentos especiales</p>
+        <div class="text-section">
+            <h1>Hola</h1>
+            <p>Haz clic en la imagen de la derecha para descubrir una sorpresa especial con confeti.</p>
         </div>
-        
-        <div class="controls">
-            <button class="btn btn-admin" onclick="checkAdmin()">🔐 Comprobar Admin</button>
-            <button class="btn btn-new" id="newPostBtn" onclick="showNewPostModal()">📝 Nueva Publicación</button>
-            <div class="admin-status" id="adminStatus">
-                ✅ Modo Administrador Activo
-            </div>
-        </div>
-        
-        <div class="posts-container" id="postsContainer">
-            <div class="empty-state">
-                <h3>¡Bienvenido a mi blog! 😊</h3>
-                <p>Aquí compartiré mis ideas, experiencias y momentos especiales.</p>
-                <p>¡Pronto habrá contenido nuevo!</p>
+        <div class="image-section" id="imageSection">
+            <div class="image-wrapper">
+                <img src="http://imgfz.com/i/cUXwYSJ.png" alt="Imagen interactiva" id="mainImage">
             </div>
         </div>
     </div>
-
-    <!-- Admin Password Modal -->
-    <div id="adminModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeAdminModal()">&times;</span>
-            <div class="modal-header">
-                <h2>🔐 Acceso de Administrador</h2>
-                <p>Introduce la contraseña para acceder al modo edición</p>
-            </div>
-            <div class="form-group">
-                <label for="adminPassword">Contraseña:</label>
-                <input type="password" id="adminPassword" placeholder="Escribe la contraseña...">
-            </div>
-            <div class="modal-buttons">
-                <button class="btn btn-submit" onclick="verifyAdmin()">🔓 Acceder</button>
-                <button class="btn btn-cancel" onclick="closeAdminModal()">❌ Cancelar</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- New Post Modal -->
-    <div id="newPostModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeNewPostModal()">&times;</span>
-            <div class="modal-header">
-                <h2>📝 Nueva Publicación</h2>
-                <p>Crea una nueva entrada para tu blog</p>
-            </div>
-            <form id="newPostForm">
-                <div class="form-group">
-                    <label for="postTitle">Título:</label>
-                    <input type="text" id="postTitle" placeholder="Escribe el título de tu publicación..." required>
-                </div>
-                <div class="form-group">
-                    <label for="postImage">Imagen:</label>
-                    <input type="file" id="postImage" accept="image/*" required>
-                </div>
-                <div class="form-group">
-                    <label for="postText">Contenido:</label>
-                    <textarea id="postText" placeholder="Escribe el contenido de tu publicación..." required></textarea>
-                </div>
-                <div class="modal-buttons">
-                    <button type="button" class="btn btn-submit" onclick="publishPost()">🚀 Publicar</button>
-                    <button type="button" class="btn btn-cancel" onclick="closeNewPostModal()">❌ Cancelar</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Edit Post Modal -->
-    <div id="editPostModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeEditPostModal()">&times;</span>
-            <div class="modal-header">
-                <h2>✏️ Editar Publicación</h2>
-                <p>Modifica tu publicación</p>
-            </div>
-            <form id="editPostForm">
-                <input type="hidden" id="editPostId">
-                <div class="form-group">
-                    <label for="editPostTitle">Título:</label>
-                    <input type="text" id="editPostTitle" placeholder="Escribe el título de tu publicación..." required>
-                </div>
-                <div class="form-group">
-                    <label for="editPostImage">Imagen:</label>
-                    <input type="file" id="editPostImage" accept="image/*">
-                    <small style="display:block; margin-top:5px; color:#777;">Dejar vacío para mantener la imagen actual</small>
-                </div>
-                <div class="form-group">
-                    <label for="editPostText">Contenido:</label>
-                    <textarea id="editPostText" placeholder="Escribe el contenido de tu publicación..." required></textarea>
-                </div>
-                <div class="modal-buttons">
-                    <button type="button" class="btn btn-submit" onclick="updatePost()">💾 Guardar Cambios</button>
-                    <button type="button" class="btn btn-cancel" onclick="closeEditPostModal()">❌ Cancelar</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Image Modal -->
-    <div id="imageModal" class="image-modal">
-        <span class="image-close" onclick="closeImageModal()">&times;</span>
-        <img class="image-modal-content" id="modalImage">
-    </div>
+    
+    <div class="click-instruction">¡Haz clic en la imagen!</div>
 
     <script>
-        let isAdmin = false;
-        let posts = [];
-        let currentEditId = null;
-
-        // Load posts from localStorage on page load
-        function loadPosts() {
-            try {
-                const savedPosts = localStorage.getItem('blogPosts');
-                posts = savedPosts ? JSON.parse(savedPosts) : [];
-            } catch (error) {
-                posts = [];
-            }
-        }
-
-        // Save posts to localStorage
-        function savePosts() {
-            try {
-                localStorage.setItem('blogPosts', JSON.stringify(posts));
-            } catch (error) {
-                // Fallback to memory if localStorage fails
-                window.blogPosts = posts;
-            }
-        }
-
-        // Admin Functions
-        function checkAdmin() {
-            document.getElementById('adminModal').style.display = 'block';
-            document.getElementById('adminPassword').focus();
-        }
-
-        function closeAdminModal() {
-            document.getElementById('adminModal').style.display = 'none';
-            document.getElementById('adminPassword').value = '';
-        }
-
-        function verifyAdmin() {
-            const password = document.getElementById('adminPassword').value;
-            if (password === 'oriente14') {
-                isAdmin = true;
-                document.getElementById('newPostBtn').classList.add('visible');
-                document.getElementById('adminStatus').classList.add('visible');
-                closeAdminModal();
-                updatePostsDisplay();
-                
-                // Success animation
-                const adminStatus = document.getElementById('adminStatus');
-                adminStatus.style.animation = 'bounce 0.6s ease-out';
-                
-                alert('🎉 ¡Acceso concedido! Ahora puedes crear y eliminar publicaciones.');
-            } else {
-                alert('❌ Contraseña incorrecta. Inténtalo de nuevo.');
-                document.getElementById('adminPassword').value = '';
-                document.getElementById('adminPassword').focus();
-            }
-        }
-
-        // New Post Functions
-        function showNewPostModal() {
-            document.getElementById('newPostModal').style.display = 'block';
-            document.getElementById('postTitle').focus();
-        }
-
-        function closeNewPostModal() {
-            document.getElementById('newPostModal').style.display = 'none';
-            document.getElementById('newPostForm').reset();
-        }
-
-        // Edit Post Functions
-        function showEditPostModal(postId) {
-            const post = posts.find(p => p.id === postId);
-            if (!post) return;
-            
-            document.getElementById('editPostId').value = post.id;
-            document.getElementById('editPostTitle').value = post.title;
-            document.getElementById('editPostText').value = post.text;
-            document.getElementById('editPostImage').value = '';
-            
-            currentEditId = postId;
-            document.getElementById('editPostModal').style.display = 'block';
-            document.getElementById('editPostTitle').focus();
-        }
-
-        function closeEditPostModal() {
-            document.getElementById('editPostModal').style.display = 'none';
-            document.getElementById('editPostForm').reset();
-            currentEditId = null;
-        }
-
-        function updatePost() {
-            const title = document.getElementById('editPostTitle').value.trim();
-            const text = document.getElementById('editPostText').value.trim();
-            const imageFile = document.getElementById('editPostImage').files[0];
-            
-            if (!title) {
-                alert('⚠️ Por favor, escribe un título.');
-                document.getElementById('editPostTitle').focus();
-                return;
-            }
-            
-            if (!text) {
-                alert('⚠️ Por favor, escribe el contenido.');
-                document.getElementById('editPostText').focus();
-                return;
-            }
-            
-            const postIndex = posts.findIndex(p => p.id === currentEditId);
-            if (postIndex === -1) {
-                alert('❌ Error: No se encontró la publicación a editar.');
-                closeEditPostModal();
-                return;
-            }
-            
-            // Show processing message
-            const updateBtn = document.querySelector('#editPostModal .btn-submit');
-            updateBtn.innerHTML = '⏳ Guardando...';
-            updateBtn.disabled = true;
-            
-            if (imageFile) {
-                // Read the new image file
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    posts[postIndex].title = title;
-                    posts[postIndex].text = text;
-                    posts[postIndex].image = e.target.result;
-                    posts[postIndex].date = new Date().toLocaleDateString('es-ES', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                        hour: '2-digit',
-                        minute: '2-digit'
-                    });
-                    
-                    savePosts();
-                    updatePostsDisplay();
-                    closeEditPostModal();
-                    
-                    // Reset button
-                    updateBtn.innerHTML = '💾 Guardar Cambios';
-                    updateBtn.disabled = false;
-                    
-                    alert('✅ ¡Publicación actualizada exitosamente!');
-                };
-                
-                reader.onerror = function() {
-                    alert('❌ Error al procesar la imagen. Inténtalo con otra imagen.');
-                    updateBtn.innerHTML = '💾 Guardar Cambios';
-                    updateBtn.disabled = false;
-                };
-                
-                reader.readAsDataURL(imageFile);
-            } else {
-                // Update without changing the image
-                posts[postIndex].title = title;
-                posts[postIndex].text = text;
-                posts[postIndex].date = new Date().toLocaleDateString('es-ES', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                    hour: '2-digit',
-                    minute: '2-digit'
-                });
-                
-                savePosts();
-                updatePostsDisplay();
-                closeEditPostModal();
-                
-                // Reset button
-                updateBtn.innerHTML = '💾 Guardar Cambios';
-                updateBtn.disabled = false;
-                
-                alert('✅ ¡Publicación actualizada exitosamente!');
-            }
-        }
-
-        // New simplified publish function
-        function publishPost() {
-            // Get form values
-            const title = document.getElementById('postTitle').value.trim();
-            const text = document.getElementById('postText').value.trim();
-            const imageFile = document.getElementById('postImage').files[0];
-            
-            // Validate fields
-            if (!title) {
-                alert('⚠️ Por favor, escribe un título.');
-                document.getElementById('postTitle').focus();
-                return;
-            }
-            
-            if (!text) {
-                alert('⚠️ Por favor, escribe el contenido.');
-                document.getElementById('postText').focus();
-                return;
-            }
-            
-            if (!imageFile) {
-                alert('⚠️ Por favor, selecciona una imagen.');
-                document.getElementById('postImage').focus();
-                return;
-            }
-            
-            // Show processing message
-            const publishBtn = document.querySelector('#newPostModal .btn-submit');
-            publishBtn.innerHTML = '⏳ Publicando...';
-            publishBtn.disabled = true;
-            
-            // Read the image file
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                // Create new post object
-                const newPost = {
-                    id: Date.now(),
-                    title: title,
-                    text: text,
-                    image: e.target.result,
-                    date: new Date().toLocaleDateString('es-ES', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                        hour: '2-digit',
-                        minute: '2-digit'
-                    })
-                };
-                
-                // Add to posts array at the beginning
-                posts.unshift(newPost);
-                
-                // Save posts
-                savePosts();
-                
-                // Update display
-                updatePostsDisplay();
-                
-                // Reset form and close modal
-                document.getElementById('newPostForm').reset();
-                closeNewPostModal();
-                
-                // Reset button
-                publishBtn.innerHTML = '🚀 Publicar';
-                publishBtn.disabled = false;
-                
-                // Show success message
-                alert('🎉 ¡Publicación creada exitosamente! Ya es visible para todos los visitantes.');
-            };
-            
-            reader.onerror = function() {
-                alert('❌ Error al procesar la imagen. Inténtalo con otra imagen.');
-                publishBtn.innerHTML = '🚀 Publicar';
-                publishBtn.disabled = false;
-            };
-            
-            // Start reading the file
-            reader.readAsDataURL(imageFile);
-        }
-
-        // Delete post function
-        function deletePost(postId) {
-            if (confirm('🗑️ ¿Estás seguro de que quieres eliminar esta publicación?')) {
-                posts = posts.filter(post => post.id !== postId);
-                savePosts(); // Save to localStorage after deletion
-                updatePostsDisplay();
-                alert('✅ Publicación eliminada exitosamente.');
-            }
-        }
-
-        // Update posts display
-        function updatePostsDisplay() {
-            const container = document.getElementById('postsContainer');
-            
-            if (posts.length === 0) {
-                container.innerHTML = `
-                    <div class="empty-state">
-                        <h3>¡Bienvenido a mi blog! 😊</h3>
-                        <p>Aquí compartiré mis ideas, experiencias y momentos especiales.</p>
-                        <p>¡Pronto habrá contenido nuevo!</p>
-                    </div>
-                `;
-                return;
-            }
-            
-            container.innerHTML = posts.map(post => `
-                <div class="post">
-                    <img src="${post.image}" alt="${post.title}" class="post-image" onclick="showImage('${post.image}')">
-                    <div class="post-content">
-                        <h3 class="post-title">${post.title}</h3>
-                        <p class="post-text">${post.text}</p>
-                        <p class="post-date">📅 ${post.date}</p>
-                        <div class="post-actions">
-                            <button class="edit-btn ${isAdmin ? 'visible' : ''}" onclick="showEditPostModal(${post.id})">
-                                ✏️ Editar
-                            </button>
-                            <button class="delete-btn ${isAdmin ? 'visible' : ''}" onclick="deletePost(${post.id})">
-                                🗑️ Eliminar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // Image modal functions
-        function showImage(imageSrc) {
-            document.getElementById('modalImage').src = imageSrc;
-            document.getElementById('imageModal').style.display = 'block';
-        }
-
-        function closeImageModal() {
-            document.getElementById('imageModal').style.display = 'none';
-        }
-
-        // Close modals when clicking outside
-        window.onclick = function(event) {
-            const adminModal = document.getElementById('adminModal');
-            const newPostModal = document.getElementById('newPostModal');
-            const editPostModal = document.getElementById('editPostModal');
-            const imageModal = document.getElementById('imageModal');
-            
-            if (event.target === adminModal) {
-                closeAdminModal();
-            }
-            if (event.target === newPostModal) {
-                closeNewPostModal();
-            }
-            if (event.target === editPostModal) {
-                closeEditPostModal();
-            }
-            if (event.target === imageModal) {
-                closeImageModal();
-            }
-        }
-
-        // Handle Enter key in admin password field
-        document.getElementById('adminPassword').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                verifyAdmin();
-            }
-        });
-
-        // Initialize
         document.addEventListener('DOMContentLoaded', function() {
-            loadPosts(); // Load existing posts first
-            updatePostsDisplay();
+            const imageSection = document.getElementById('imageSection');
+            const mainImage = document.getElementById('mainImage');
+            const confettiContainer = document.getElementById('confettiContainer');
+            const originalImage = 'http://imgfz.com/i/cUXwYSJ.png';
+            const gifImage = 'http://imgfz.com/i/VIJCXeg.gif';
+            let confettiActive = false;
+            
+            // Función para crear confeti
+            function createConfetti() {
+                if (confettiActive) return;
+                confettiActive = true;
+                
+                // Limpiar confeti anterior
+                confettiContainer.innerHTML = '';
+                
+                // Colores para el confeti
+                const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff', '#ff8800'];
+                
+                // Crear partículas de confeti
+                for (let i = 0; i < 200; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    
+                    // Estilo aleatorio para cada partícula
+                    const size = Math.floor(Math.random() * 10) + 5;
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    const left = Math.random() * 100;
+                    const animationDuration = (Math.random() * 3) + 2;
+                    
+                    confetti.style.width = `${size}px`;
+                    confetti.style.height = `${size}px`;
+                    confetti.style.backgroundColor = color;
+                    confetti.style.left = `${left}%`;
+                    confetti.style.top = '-20px';
+                    confetti.style.opacity = '0.8';
+                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                    
+                    // Animación
+                    confetti.style.animation = `
+                        fall ${animationDuration}s linear forwards,
+                        sway ${animationDuration * 0.7}s ease-in-out infinite alternate
+                    `;
+                    
+                    // Añadir al contenedor
+                    confettiContainer.appendChild(confetti);
+                    
+                    // Definir keyframes para las animaciones
+                    const style = document.createElement('style');
+                    style.textContent = `
+                        @keyframes fall {
+                            to {
+                                top: 100%;
+                                transform: rotate(${Math.random() * 360}deg);
+                            }
+                        }
+                        
+                        @keyframes sway {
+                            from {
+                                transform: translateX(-10px) rotate(0deg);
+                            }
+                            to {
+                                transform: translateX(10px) rotate(360deg);
+                            }
+                        }
+                    `;
+                    document.head.appendChild(style);
+                    
+                    // Eliminar partícula después de que termine la animación
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, animationDuration * 1000);
+                }
+                
+                // Permitir nuevo confeti después de un tiempo
+                setTimeout(() => {
+                    confettiActive = false;
+                }, 3000);
+            }
+            
+            // Cambiar imagen al hacer clic
+            imageSection.addEventListener('click', function() {
+                if (mainImage.src === originalImage || mainImage.src.endsWith(originalImage)) {
+                    mainImage.src = gifImage;
+                    createConfetti();
+                    
+                    // Ocultar la instrucción después del primer clic
+                    document.querySelector('.click-instruction').style.display = 'none';
+                } else {
+                    mainImage.src = originalImage;
+                }
+            });
         });
     </script>
 </body>
